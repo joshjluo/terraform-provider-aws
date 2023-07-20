@@ -11,7 +11,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Creates an encryption security policy
+# Creates an encryption policy
 resource "aws_opensearchserverless_security_policy" "encryption_policy" {
   name        = "example-encryption-policy"
   type        = "encryption"
@@ -36,11 +36,11 @@ resource "aws_opensearchserverless_collection" "collection" {
   depends_on = [aws_opensearchserverless_security_policy.encryption_policy]
 }
 
-# Creates a network security policy
+# Creates a network policy
 resource "aws_opensearchserverless_security_policy" "network_policy" {
   name        = "example-network-policy"
   type        = "network"
-  description = "public access for dashboard, VPC access for collection endpoint"
+  description = "public access for OpenSearch Dashboards, VPC access for collection endpoint"
   policy = jsonencode([
     {
       Description = "VPC access for collection endpoint",
